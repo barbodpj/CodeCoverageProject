@@ -51,31 +51,26 @@ public class MockUserServiceImplTest {
 	@Test 
 	public void findById_not_found_default_user() {
 		doReturn(null).when(personDao).findOne( Matchers.any(Integer.class));
-		 
 		doReturn(user).when(transformer).toUserDomain(Matchers.any(Person.class));
-		
 		User default_user = testClass.findById(Integer.valueOf(1));
 		assertNotNull(default_user);
-		 
 	}
 
 	@Test
 	public void findById_not_found_raiseException() {
-		final int FINDING_ID = 1;
 		doReturn(null).when(personDao).findOne( Matchers.any(Integer.class));
 		doReturn(user).when(transformer).toUserDomain(Matchers.any(Person.class));
-
 		try {
-			testClass.findById_old(FINDING_ID);
-			fail("UserNotFoundException not thrown");
+			testClass.findById_old(Integer.valueOf(1));
+			fail("UserNotFoundException is not thrown");
 		}
 		catch (UserNotFoundException userNotFoundException)
 		{
-			assertEquals(Integer.valueOf(FINDING_ID), userNotFoundException.getUserId());
+			assertEquals(Integer.valueOf(Integer.valueOf(1)), userNotFoundException.getUserId());
 		}
 		catch (Exception e)
 		{
-			fail("UserNotFoundException not thrown");
+			fail("UserNotFoundException is not thrown");
 		}
 	}
 
@@ -102,16 +97,13 @@ public class MockUserServiceImplTest {
 	}
 
 	@Test
-	public void save_should_return_saved_user()
+	public void saved_user_return_save()
 	{
 		doReturn(person).when(transformer).toUserEntity(user);
 		doReturn(user).when(transformer).toUserDomain(person);
 		doReturn(person).when(personDao).save(person);
-
 		final User savedUser = testClass.save(user);
 		assertEquals(user, savedUser);
-		assertEquals(user.getFirstName(), savedUser.getFirstName());
-		assertEquals(user.getUserId(), savedUser.getUserId());
 	}
 
 	@Test

@@ -9,10 +9,10 @@ import static org.junit.Assert.assertEquals;
 public class TransformServiceTest {
 	private final TransformService transformService = new TransformService();
 	private static final int ID = 1;
-	private static final String FIRST_NAME = "Ali";
-	private static final String MIDDLE_NAME = "Reza";
-	private static final String LAST_NAME = "Alavi";
-	private static final String COMPANY_NAME = "Microsoft";
+	private static final String FIRST_NAME = "foo";
+	private static final String MIDDLE_NAME = "bar";
+	private static final String LAST_NAME = "xxx";
+	private static final String COMPANY_NAME = "yyy";
 	private User user = new User();
 	private Person person = new Person();
 
@@ -44,27 +44,5 @@ public class TransformServiceTest {
 		assertEquals(person.getCompanyName(), convertedUser.getCompanyName());
 	}
 
-	@Test
-	public void toUserEntity_result_should_have_equal_attributes_with_given_user()
-	{
-		// Action
-		final Person convertedPerson = transformService.toUserEntity(user);
 
-		// Assert
-		assertEquals((int) user.getUserId(), convertedPerson.getPersonId());
-		assertEquals(user.getFirstName(), convertedPerson.getfName());
-		assertEquals(user.getLastName(), convertedPerson.getlName());
-		assertEquals(user.getCompanyName(), convertedPerson.getCompanyName());
-	}
-
-	@Test
-	public void converting_a_user_with_id_to_person_and_converting_back_to_user_should_return_the_initial_user()
-	{
-		// Action
-		final Person convertedPerson = transformService.toUserEntity(user);
-		final User convertedUser = transformService.toUserDomain(convertedPerson);
-
-		// Assert
-		assertEquals(user, convertedUser);
-	}
 }

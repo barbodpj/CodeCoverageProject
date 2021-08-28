@@ -30,7 +30,7 @@ public class PersonTest {
 		person.setlName(lName);
 		assertEquals(lName, person.getlName());
 	}
-	
+
 	@Test
 	public void test_setCompanyName(){
 		final String companyName = "foo";
