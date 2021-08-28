@@ -30,19 +30,16 @@ public class PersonTest {
 		person.setlName(lName);
 		assertEquals(lName, person.getlName());
 	}
-
+	
 	@Test
-	public void test_setCompanyName() {
-		final String companyName = "company";
-
+	public void test_setCompanyName(){
+		final String companyName = "foo";
 		person.setCompanyName(companyName);
-		assertEquals(companyName, person.getCompanyName());
+		assertEquals(companyName,person.getCompanyName());
 	}
-
 	@Test
-	public void test_setPersonId() {
-		final int personId = 15;
-
+	public void test_setPersonId(){
+		final int personId = 13;
 		person.setPersonId(personId);
 		assertEquals(personId, person.getPersonId());
 	}
